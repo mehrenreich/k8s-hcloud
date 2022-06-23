@@ -1,7 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Terraform
-
 on:
   push:
     branches: [ "main" ]
@@ -12,6 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run tflint
-        run: |
-          cd $GITHUB_WORKSPACE/terraform
-          docker run -v $(pwd):/data ghcr.io/terraform-linters/tflint
+        run: docker run -v $GITHUB_WORKSPACE/terraform:/data ghcr.io/terraform-linters/tflint
