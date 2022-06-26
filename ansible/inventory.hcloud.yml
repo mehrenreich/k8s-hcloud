@@ -1,0 +1,13 @@
+plugin: hcloud
+keyed_groups:
+  - key: label
+    prefix: label
+  - key: location
+    prefix: location
+  - key: type
+    prefix: type
+  - key: status
+    prefix: status
+groups:
+  controllers: "'controller' in name"
+  nodes: "'node' in name"
