@@ -8,7 +8,7 @@ terraform {
   }
 
   cloud {
-    organization = "mehrenreich.broken"
+    organization = "mehrenreich"
     workspaces {
       name = "k8s-hcloud"
     }
