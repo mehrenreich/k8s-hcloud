@@ -1,7 +1,6 @@
 variable "hcloud_token" {
   description = "(Required) Token for accessing the Hetzner API"
   type        = string
-  default     = "Qa4llKiD2g4XDSWDHYfRHZ78U4vBLt38B6z8eVzVgPZT3DdM1sI03KqUx1vvMCff"
   sensitive   = true
 }
 
