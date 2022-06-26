@@ -13,7 +13,7 @@ variable "kubernetes_controllers" {
 variable "kubernetes_nodes" {
   description = "(Optional) Number of K8s Node instances"
   type        = number
-  default     = 1
+  default     = 2
 }
 
 variable "network_ip_range" {
