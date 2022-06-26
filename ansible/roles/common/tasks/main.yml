@@ -1,0 +1,17 @@
+---
+- name: Ensure APT cache is updated
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Ensure that base packages are installed
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - apt-transport-https
+    - curl
+
+- name: Ensure swap is disabled
+  shell: |
+    sudo swapoff -a
+    sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab

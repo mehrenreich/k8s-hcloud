@@ -1,0 +1,44 @@
+---
+- name: Ensure cluster is initialized
+  shell: "kubeadm init --pod-network-cidr={{ pod_network_cidr }}"
+  args:
+    chdir: /root
+    creates: cluster_initialized.txt
+
+- block:
+    - name: Ensure config directory for user "kube" is created
+      file:
+        path: /home/kube/.kube
+        state: directory
+        mode: 0_755
+        owner: kube
+        group: kube
+
+    - name: Ensure local config for user "kube" is created
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /home/kube/.kube/config
+        remote_src: true
+        owner: kube
+        group: kube
+
+- name: Ensure "calico" pod network is installed
+  shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+  become: true
+  become_user: kube
+
+- name: Get the token for joining the worker nodes
+  shell: kubeadm token create  --print-join-command
+  become: true
+  become_user: kube
+  register: kubernetes_join_command
+
+- debug:
+    msg: "{{ kubernetes_join_command.stdout }}"
+
+- name: Ensure join command is written to a file
+  local_action:
+    module: ansible.builtin.copy
+    content: "{{ kubernetes_join_command.stdout_lines[0] }}"
+    dest: "/tmp/kubernetes_join_command"
+    mode: 0_777

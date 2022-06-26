@@ -1,0 +1,13 @@
+---
+- hosts: all
+  roles:
+    - { role: common, tags: ["always", "common"] }
+    - { role: kubernetes-common, tags: ["kubernetes", "common"] }
+
+- hosts: controllers
+  roles:
+    - { role: kubernetes-controller, tags: ["kubernetes", "controller"] }
+
+- hosts: nodes
+  roles:
+    - { role: kubernetes-node, tags: ["kubernetes", "node"] }
