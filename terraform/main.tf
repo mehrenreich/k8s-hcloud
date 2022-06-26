@@ -6,6 +6,13 @@ terraform {
       version = "1.33.2"
     }
   }
+
+  cloud {
+    organization = "mehrenreich"
+    workspaces {
+      name = "k8s-hcloud"
+    }
+  }
 }
 
 provider "hcloud" {
