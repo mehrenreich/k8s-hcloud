@@ -56,7 +56,6 @@ variable "location" {
 }
 
 variable "ssh_public_key" {
-  description = "(Optional) Path to local SSH public key file"
+  description = "(Required) SSH public key file"
   type        = string
-  default     = "~/.ssh/id_ed25519.pub"
 }

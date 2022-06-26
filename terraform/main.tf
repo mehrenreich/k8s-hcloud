@@ -21,7 +21,7 @@ provider "hcloud" {
 
 resource "hcloud_ssh_key" "default" {
   name       = "Default"
-  public_key = file(var.ssh_public_key)
+  public_key = var.ssh_public_key
 }
 
 resource "hcloud_network" "kubernetes" {
