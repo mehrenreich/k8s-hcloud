@@ -7,7 +7,7 @@ name: tfsec
 
 on:
   push:
-    branches: [ "main", deny-push-to-main ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   schedule:
