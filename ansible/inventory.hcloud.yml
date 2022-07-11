@@ -1,4 +1,5 @@
 plugin: hcloud
+token_env: TF_VAR_hcloud_token
 keyed_groups:
   - key: label
     prefix: label
